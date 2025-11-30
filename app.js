@@ -50,6 +50,28 @@ class MusicHub {
         if (searchInput && CONFIG.features.enableSearch) {
             searchInput.addEventListener('input', (e) => this.handleSearch(e.target.value));
         }
+
+        // Mobile navigation (hamburger menu)
+        const menuToggle = document.getElementById('menu-toggle');
+        const mainNav = document.getElementById('main-nav');
+
+        if (menuToggle && mainNav) {
+            menuToggle.addEventListener('click', () => {
+                const isOpen = mainNav.classList.toggle('nav-open');
+                menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            });
+
+            // Close menu when a link is clicked (on mobile)
+            const navLinks = mainNav.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mainNav.classList.contains('nav-open')) {
+                        mainNav.classList.remove('nav-open');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+        }
     }
 
     /**
