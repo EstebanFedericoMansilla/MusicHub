@@ -28,6 +28,7 @@ class MusicHub {
 
         // Load initial data
         await this.loadDiscussions();
+        await this.loadLastComment();
 
         // Set up auto-refresh if enabled
         if (CONFIG.app.enableAutoRefresh) {
@@ -42,7 +43,10 @@ class MusicHub {
         // Refresh button
         const refreshBtn = document.getElementById('refresh-btn');
         if (refreshBtn) {
-            refreshBtn.addEventListener('click', () => this.loadDiscussions());
+            refreshBtn.addEventListener('click', () => {
+                this.loadDiscussions();
+                this.loadLastComment();
+            });
         }
 
         // Search functionality
@@ -102,6 +106,16 @@ class MusicHub {
             const card = this.createMusicCard(discussion, index);
             feedGrid.appendChild(card);
         });
+
+        this.loadLastComment();
+    }
+
+    /**
+     * Load the last comment
+     */
+    async loadLastComment() {
+        const lastComment = new LastComment();
+        await lastComment.init();
     }
 
     /**
@@ -296,8 +310,179 @@ class MusicHub {
     }
 }
 
+class LastComment {
+    constructor() {
+      this.githubAPI = new GitHubAPI(CONFIG);
+      this.lastComment = null;
+      this.isLoading = false;
+      this.error = null;
+  
+    }
+  
+    async init() {
+      await this.fetchLastComment();
+      this.render();
+    }
+  
+    async fetchLastComment() {
+      this.isLoading = true;
+  
+      const query = `
+        query($owner: String!, $repo: String!, $categoryId: ID) {
+          repository(owner: $owner, name: $repo) {
+            discussions(first: 1, categoryId: $categoryId, orderBy: {field: CREATED_AT, direction: DESC}) {
+              nodes {
+                comments(last: 1) {
+                  nodes {
+                    author {
+                      login
+                      avatarUrl
+                    }
+                    body
+                    createdAt
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      `;
+  
+      const variables = {
+        owner: this.githubAPI.owner,
+        repo: this.githubAPI.repo,
+        categoryId: this.githubAPI.categoryId,
+      };
+  
+      try {
+        const response = await this.githubAPI.makeGraphQLRequest(query, variables);
+        if (response.errors) {
+          throw new Error(response.errors[0].message);
+        }
+        const discussions = response.data.repository.discussions.nodes;
+        if (discussions.length > 0 && discussions[0].comments.nodes.length > 0) {
+          this.lastComment = discussions[0].comments.nodes[0];
+        }
+      } catch (error) {
+        this.error = error;
+        console.error('Error fetching last comment:', error);
+      } finally {
+        this.isLoading = false;
+      }
+    }
+  
+    render() {
+      const container = document.getElementById('last-comment-container');
+      if (!container) return;
+  
+      if (this.isLoading) {
+        container.innerHTML = '<p>Cargando último comentario...</p>';
+        return;
+      }
+  
+      if (this.error) {
+        container.innerHTML = `<p>Error al cargar el último comentario: ${this.error.message}</p>`;
+        return;
+      }
+  
+      if (!this.lastComment) {
+        container.innerHTML = '<p>No hay comentarios aún.</p>';
+        return;
+      }
+  
+      const { author, body, createdAt, url } = this.lastComment;
+      const timeAgo = this.githubAPI.getTimeAgo(new Date(createdAt));
+  
+      container.innerHTML = `
+        <h3>Último comentario:</h3>
+        <div class="last-comment">
+          <img src="${author.avatarUrl}" alt="${author.login}" class="user-avatar">
+          <div class="comment-content">
+            <div class="comment-header">
+              <strong>${author.login}</strong>
+              <span class="comment-time">${timeAgo}</span>
+            </div>
+            <div class="comment-body">
+              ${body}
+            </div>
+            <a href="${url}" target="_blank" rel="noopener noreferrer" class="comment-link">Ver comentario</a>
+          </div>
+        </div>
+      `;
+    }
+  }
+
 // Initialize app when DOM is ready
 let app;
 document.addEventListener('DOMContentLoaded', () => {
     app = new MusicHub();
 });
+
+// ============================================ 
+//   Tutorial Modal Functions
+// ============================================ 
+
+/**
+ * Open the main tutorials modal
+ */
+function openTutorialsModal(event) {
+    event.preventDefault();
+    const modal = document.getElementById('tutorialModal');
+    if (modal) {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+/**
+ * Close the main tutorials modal
+ */
+function closeTutorialsModal() {
+    const modal = document.getElementById('tutorialModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+}
+
+/**
+ * Toggle individual tutorial sections inside the modal
+ * @param {string} id - The ID of the tutorial content element
+ */
+function toggleTutorial(id) {
+    const content = document.getElementById(id);
+    const toggle = document.getElementById(id + 'Toggle');
+    if (content && toggle) {
+        content.classList.toggle('open');
+        toggle.classList.toggle('open');
+    }
+}
+
+/**
+ * Open the modal for viewing screenshot images
+ * @param {string} src - The source URL of the image to display
+ */
+function openImageModal(src) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    if (modal && modalImg) {
+        modal.style.display = 'block';
+        modalImg.src = src;
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+/**
+ * Close the modal for viewing screenshot images
+ */
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    if (modal) {
+        modal.style.display = 'none';
+        // Only re-enable scrolling if the main tutorial modal is also closed
+        if (document.getElementById('tutorialModal').style.display !== 'block') {
+            document.body.style.overflow = '';
+        }
+    }
+}
