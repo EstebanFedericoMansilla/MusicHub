@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="MusicHub - Red social para músicos. Comparte tu música con el mundo usando SoundCloud, YouTube, Spotify y más.">
+    <meta name="keywords" content="música, red social, músicos, SoundCloud, YouTube, Spotify, compartir música">
+    <meta name="author" content="MusicHub">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="MusicHub - Comparte tu música con el mundo">
+    <meta property="og:description"
+        content="Red social para músicos. Comparte tus creaciones musicales y descubre nuevo talento.">
+
+    <title>MusicHub - Red Social para Músicos</title>
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🎵</span>
+                    <span>MusicHub</span>
+                </div>
+
+                <nav class="nav">
+                    <a href="#feed" class="nav-link">Feed</a>
+                    <a href="#share" class="nav-link">Compartir</a>
+                    <a href="tutoriales.html" class="nav-link">📚 Ayuda</a>
+                    <a href="https://github.com/signup" target="_blank" class="btn btn-primary"
+                        style="margin-left: 0.5rem;">Crear cuenta</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Comparte tu música con el mundo</h1>
+            <p class="hero-subtitle">
+                Conecta con otros músicos y descubre nuevo talento. Comparte desde SoundCloud, YouTube, Spotify y más.
+            </p>
+            <div class="hero-cta">
+                <a href="#share" class="btn btn-primary">
+                    🎤 Compartir mi música
+                </a>
+                <a href="#feed" class="btn btn-secondary">
+                    🎧 Explorar música
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Feed -->
+    <section id="feed" class="section">
+        <div class="container">
+            <div class="feed-container">
+
+                <!-- Feed Header -->
+                <div class="feed-header">
+                    <h2 class="feed-title">🎶 Feed Musical</h2>
+
+                    <div class="feed-controls">
+                        <!-- Search -->
+                        <input
+                            type="text"
+                            id="search-input"
+                            class="search-input"
+                            placeholder="🔍 Buscar música..."
+                        >
+
+                        <!-- Refresh Button -->
+                        <button id="refresh-btn" class="btn btn-secondary">
+                            🔄 Actualizar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Feed Grid -->
+                <div id="feed-grid" class="feed-grid">
+                    <!-- Loading state will be inserted here -->
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Cargando música...</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Share Music Section -->
+    <section id="share" class="section">
+        <div class="container">
+            <div class="giscus-section">
+                <h2 class="giscus-title">🎤 Comparte tu música</h2>
+                <p class="text-center text-muted mb-2">
+                    Publica el enlace de tu música desde SoundCloud, YouTube, Spotify, Bandcamp o cualquier archivo de
+                    audio.
+                </p>
+
+                <!-- Instructions -->
+                <div class="instructions-card">
+                    <h3 class="instructions-title">📝 Cómo compartir:</h3>
+                    <ol class="instructions-list">
+                        <li>Copia el enlace de tu música (SoundCloud, YouTube, Spotify, etc.)</li>
+                        <li>Pega el enlace en el comentario de abajo</li>
+                        <li>Opcionalmente, añade un título o descripción</li>
+                        <li>¡Publica y tu música aparecerá en el feed!</li>
+                    </ol>
+
+                    <div class="supported-platforms">
+                        <strong>💡 Plataformas soportadas:</strong>
+                        <div class="platform-pills">
+                            <span class="pill">🎵 SoundCloud</span>
+                            <span class="pill">▶️ YouTube</span>
+                            <span class="pill">🎧 Spotify</span>
+                            <span class="pill">🎸 Bandcamp</span>
+                            <span class="pill">🎼 MP3/WAV</span>
+                        </div>
+                    </div>
+
+                    <p class="instructions-footer-link">
+                        <a href="tutoriales.html" class="link-inline">
+                            📚 ¿Necesitas ayuda? Ver tutoriales →
+                        </a>
+                    </p>
+                </div>
+
+                <!-- Giscus Comments -->
+                <div id="giscus-container">
+                    <script src="https://giscus.app/client.js" data-repo="[INGRESA TU USUARIO/REPOSITORIO]"
+                        data-repo-id="[INGRESA TU REPO ID]" data-category="Music"
+                        data-category-id="[INGRESA TU CATEGORY ID]" data-mapping="pathname" data-strict="0"
+                        data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="dark"
+                        data-lang="es" crossorigin="anonymous" async>
+                        </script>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p class="footer-text">
+                Hecho con ❤️ para la comunidad musical
+            </p>
+            <p class="footer-text footer-small">
+                Powered by <a href="https://github.com" target="_blank">GitHub Discussions</a> &
+                <a href="https://giscus.app" target="_blank">Giscus</a>
+            </p>
+            <p class="footer-text footer-small">
+                <a href="tutoriales.html" class="link-inline">📚 Tutoriales</a>
+            </p>
+
+            <!-- Contador de visitas -->
+            <div class="contador-visitas">
+                <div id="[INGRESA-TU-ID-CONTADOR]"></div>
+                <script type="text/javascript"
+                    src="https://counter1.optistats.ovh/private/counter.js?c=[INGRESA-TU-CODIGO-CONTADOR]&down=async"
+                    async>
+                </script>
+                <noscript>
+                    <a href="https://www.contadorvisitasgratis.com" title="contador de visitas">
+                        <img src="https://counter1.optistats.ovh/private/contadorvisitasgratis.php?c=[INGRESA-TU-CODIGO-CONTADOR]"
+                            border="0" title="contador de visitas" alt="contador de visitas">
+                    </a>
+                </noscript>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script src="audio-parser.js"></script>
+    <script src="github-api.js"></script>
+    <script src="app.js"></script>
+
+</body>
+
+</html>
