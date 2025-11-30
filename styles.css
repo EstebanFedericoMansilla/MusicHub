@@ -190,9 +190,12 @@ a:hover {
     background-clip: text;
 }
 
-.logo-icon {
-    font-size: 2rem;
+.logo-img {
+    height: 40px;
+    width: auto;
     filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
+    border-radius: 8px;
+    /* Optional: adds slight rounding if the image is square */
 }
 
 /* Mobile navigation toggle (hamburger) */
@@ -830,6 +833,7 @@ a:hover {
         width: 100%;
     }
 }
+
 /* ============================================
    Share instructions card
    ============================================ */
@@ -874,8 +878,8 @@ a:hover {
 
 .pill {
     background: linear-gradient(135deg,
-        rgba(148, 163, 184, 0.2),
-        rgba(30, 64, 175, 0.5));
+            rgba(148, 163, 184, 0.2),
+            rgba(30, 64, 175, 0.5));
     padding: 0.25rem 0.85rem;
     border-radius: 999px;
     font-size: 0.875rem;
@@ -897,6 +901,7 @@ a:hover {
 .link-inline:hover {
     color: var(--color-primary);
 }
+
 /* ============================================
    Footer
    ============================================ */
@@ -935,6 +940,7 @@ a:hover {
     cursor: pointer;
     animation: fadeIn 0.3s;
 }
+
 .modal-content {
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
@@ -949,6 +955,7 @@ a:hover {
     display: flex;
     flex-direction: column;
 }
+
 .modal-header {
     display: flex;
     justify-content: space-between;
@@ -960,9 +967,11 @@ a:hover {
     background: var(--bg-secondary);
     z-index: 10;
 }
+
 .modal-header h2 {
     margin: 0;
 }
+
 .close-modal-btn {
     background: none;
     border: none;
@@ -971,18 +980,22 @@ a:hover {
     cursor: pointer;
     transition: color 0.3s;
 }
+
 .close-modal-btn:hover {
     color: var(--text-primary);
 }
+
 .modal-body {
     padding: var(--spacing-lg);
 }
+
 .tutorial-box {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-lg);
     margin-bottom: var(--spacing-lg);
 }
+
 .tutorial-header {
     cursor: pointer;
     display: flex;
@@ -991,36 +1004,45 @@ a:hover {
     user-select: none;
     padding: var(--spacing-md);
 }
+
 .tutorial-title-wrap {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
 }
+
 .tutorial-icon {
     font-size: 1.5rem;
 }
+
 .tutorial-title {
     margin: 0;
     font-size: 1.25rem;
 }
+
 .tutorial-toggle {
     font-size: 1.5rem;
     transition: transform 0.3s;
 }
+
 .tutorial-toggle.open {
     transform: rotate(180deg);
 }
+
 .tutorial-content {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease-in-out;
     padding: 0 var(--spacing-md);
 }
+
 .tutorial-content.open {
-    max-height: 3000px; /* Adjust as needed */
+    max-height: 3000px;
+    /* Adjust as needed */
     padding: var(--spacing-md);
     border-top: 1px solid var(--border-color);
 }
+
 .tutorial-step {
     display: flex;
     gap: var(--spacing-md);
@@ -1030,6 +1052,7 @@ a:hover {
     border-radius: var(--border-radius-md);
     border-left: 4px solid var(--color-primary);
 }
+
 .step-number {
     background: var(--gradient-primary);
     color: white;
@@ -1042,19 +1065,23 @@ a:hover {
     font-weight: bold;
     flex-shrink: 0;
 }
+
 .step-content h4 {
     margin: 0 0 var(--spacing-xs) 0;
     color: var(--text-primary);
 }
+
 .step-content p {
     margin: 0;
     color: var(--text-secondary);
 }
+
 .step-content ul {
     margin: var(--spacing-xs) 0 0 0;
     padding-left: var(--spacing-lg);
     color: var(--text-secondary);
 }
+
 .screenshot {
     width: 100%;
     max-width: 600px;
@@ -1064,10 +1091,12 @@ a:hover {
     transition: transform 0.3s;
     border: 1px solid var(--border-color);
 }
+
 .screenshot:hover {
     transform: scale(1.02);
     box-shadow: var(--shadow-glow);
 }
+
 .code-example {
     background: var(--bg-tertiary);
     padding: var(--spacing-sm);
@@ -1078,6 +1107,7 @@ a:hover {
     overflow-x: auto;
     border: 1px solid var(--border-color);
 }
+
 .info-box {
     margin-top: var(--spacing-md);
     padding: var(--spacing-md);
@@ -1085,10 +1115,12 @@ a:hover {
     border-radius: var(--border-radius-md);
     border-left: 4px solid var(--color-primary);
 }
+
 .info-box p {
     margin: 0;
     color: var(--text-secondary);
 }
+
 /* Image Modal Styles (for screenshots inside tutorial) */
 #imageModal {
     display: none;
@@ -1102,6 +1134,7 @@ a:hover {
     cursor: pointer;
     animation: fadeIn 0.3s;
 }
+
 #imageModal .modal-content {
     margin: auto;
     display: block;
