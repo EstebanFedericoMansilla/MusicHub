@@ -37,7 +37,7 @@
                 </div>
 
                 <nav class="nav">
-                    <a href="#feed" class="nav-link">Feed</a>
+                    <a href="#sponsors" class="nav-link">Patrocinadores</a>
                     <a href="#share" class="nav-link">Compartir</a>
                     <a href="#" class="nav-link" onclick="openTutorialsModal(event)">📚 Ayuda</a>
                     <a href="https://github.com/signup" target="_blank" class="btn btn-primary"
@@ -58,42 +58,56 @@
                 <a href="#share" class="btn btn-primary">
                     🎤 Compartir mi música
                 </a>
-                <a href="#feed" class="btn btn-secondary">
-                    🎧 Explorar música
+                <a href="#sponsors" class="btn btn-secondary">
+                    🏆 Ver Patrocinadores
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Music Feed -->
-    <section id="feed" class="section">
+    <!-- Sponsors Section -->
+    <section id="sponsors" class="section">
         <div class="container">
-            <div class="feed-container">
-
-                <!-- Feed Header -->
-                <div class="feed-header">
-                    <h2 class="feed-title">🎶 Feed Musical</h2>
-                    <div id="last-comment-container"></div>
-                    <div class="feed-controls">
-                        <!-- Search -->
-                        <input type="text" id="search-input" class="search-input" placeholder="Buscar música...">
-
-                        <!-- Refresh Button -->
-                        <button id="refresh-btn" class="btn btn-secondary">
-                            🔄 Actualizar
-                        </button>
-                    </div>
+            <h2 class="section-title text-center">🏆 Patrocinadores</h2>
+            <p class="text-center text-muted mb-4">
+                Estas empresas y personas increíbles hacen posible MusicHub.
+            </p>
+            <div class="sponsors-grid">
+                <!-- Sponsor Logo -->
+                <div class="sponsor-card">
+                    <a href="#" target="_blank" rel="noopener noreferrer">
+                        <img src="https://via.placeholder.com/200x100?text=Tu+Logo+Aquí" alt="Logo del Patrocinador"
+                            class="sponsor-logo">
+                        <p class="sponsor-name">Nombre de la Empresa</p>
+                    </a>
                 </div>
 
-                <!-- Feed Grid -->
-                <div id="feed-grid" class="feed-grid">
-                    <!-- Loading state will be inserted here -->
-                    <div class="loading">
-                        <div class="spinner"></div>
-                        <p>Cargando música...</p>
-                    </div>
+                <!-- Sponsor Logo -->
+                <div class="sponsor-card">
+                    <a href="#" target="_blank" rel="noopener noreferrer">
+                        <img src="https://via.placeholder.com/200x100?text=Tu+Logo+Aquí" alt="Logo del Patrocinador"
+                            class="sponsor-logo">
+                        <p class="sponsor-name">Nombre de la Empresa</p>
+                    </a>
                 </div>
 
+                <!-- Sponsor Logo -->
+                <div class="sponsor-card">
+                    <a href="#" target="_blank" rel="noopener noreferrer">
+                        <img src="https://via.placeholder.com/200x100?text=Tu+Logo+Aquí" alt="Logo del Patrocinador"
+                            class="sponsor-logo">
+                        <p class="sponsor-name">Nombre de la Empresa</p>
+                    </a>
+                </div>
+                
+                <!-- Call to Action -->
+                <div class="sponsor-cta">
+                     <h3 class="cta-title">¿Quieres patrocinar MusicHub?</h3>
+                     <p>¡Ayúdanos a mantener la música sonando y obtén visibilidad!</p>
+                     <p><strong>Contacto:</strong> Esteban Federico Mansilla</p>
+                     <p><strong>Email:</strong> masteringsteve@gmail.com</p>
+                     <a href="https://wa.me/5492664024390" target="_blank" class="btn btn-secondary">Contactar por WhatsApp</a>
+                </div>
             </div>
         </div>
     </section>
@@ -334,6 +348,7 @@
     <script src="audio-parser.js"></script>
     <script src="github-api.js"></script>
     <script src="app.js"></script>
+
 </body>
 
 </html>
