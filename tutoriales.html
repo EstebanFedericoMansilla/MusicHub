@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriales - MusicHub</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .tutorial-page {
+            min-height: 100vh;
+            padding: var(--spacing-xl) 0;
+        }
+
+        .tutorial-box {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .tutorial-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tutorial-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .tutorial-icon {
+            font-size: 1.5rem;
+        }
+
+        .tutorial-title {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+
+        .tutorial-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .tutorial-toggle.open {
+            transform: rotate(180deg);
+        }
+
+        .tutorial-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .tutorial-content.open {
+            max-height: 3000px;
+            padding-top: var(--spacing-lg);
+        }
+
+        .tutorial-step {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: var(--bg-glass);
+            border-radius: var(--border-radius-md);
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .step-number {
+            background: var(--gradient-primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            margin: 0 0 var(--spacing-xs) 0;
+        }
+
+        .step-content p {
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        .step-content ul {
+            margin: var(--spacing-xs) 0 0 0;
+            padding-left: var(--spacing-lg);
+            color: var(--text-secondary);
+        }
+
+        .screenshot {
+            width: 100%;
+            max-width: 600px;
+            border-radius: var(--border-radius-md);
+            margin-top: var(--spacing-sm);
+            cursor: pointer;
+            transition: transform 0.3s;
+            border: 1px solid var(--border-color);
+        }
+
+        .screenshot:hover {
+            transform: scale(1.02);
+        }
+
+        .code-example {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-sm);
+            border-radius: var(--border-radius-sm);
+            margin-top: var(--spacing-xs);
+            font-family: monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+        }
+
+        .info-box {
+            margin-top: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: var(--border-radius-md);
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .info-box p {
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            cursor: pointer;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            margin-bottom: var(--spacing-lg);
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            color: var(--color-primary-light);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🎵</span>
+                    <span>MusicHub</span>
+                </div>
+
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">← Volver al inicio</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="tutorial-page">
+        <div class="container">
+
+            <a href="index.html" class="back-link">← Volver a MusicHub</a>
+
+            <h1 style="margin-bottom: var(--spacing-lg);">📚 Tutoriales de MusicHub</h1>
+
+            <!-- Tutorial: Crear cuenta GitHub -->
+            <div class="tutorial-box">
+                <div class="tutorial-header" onclick="toggleTutorial('githubTutorial')">
+                    <div class="tutorial-title-wrap">
+                        <span class="tutorial-icon">🎓</span>
+                        <h3 class="tutorial-title">¿Primera vez en GitHub? Crea tu cuenta aquí</h3>
+                    </div>
+                    <span class="tutorial-toggle" id="githubTutorialToggle">▼</span>
+                </div>
+
+                <div class="tutorial-content" id="githubTutorial">
+                    <div class="tutorial-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Crear cuenta en GitHub</h4>
+                            <p>Ve a <a href="https://github.com/signup" target="_blank"
+                                    style="color: var(--color-primary);">github.com/signup</a> y completa el registro.
+                                Es gratis y solo toma 2 minutos.</p>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Personaliza tu perfil</h4>
+                            <p>Una vez en GitHub, haz clic en tu <strong>foto de perfil</strong> (esquina superior
+                                derecha) y selecciona <strong>"Profile"</strong>. Luego haz clic en <strong>"Edit
+                                    profile"</strong>.</p>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Sube tu foto</h4>
+                            <p>Haz clic en tu avatar y selecciona <strong>"Upload a photo..."</strong> para subir una
+                                imagen desde tu dispositivo.</p>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Completa tu información</h4>
+                            <p>Rellena los campos:</p>
+                            <ul>
+                                <li><strong>Name:</strong> Tu nombre artístico</li>
+                                <li><strong>Bio:</strong> Descripción sobre ti y tu música (máximo 160 caracteres)</li>
+                                <li><strong>Location:</strong> Tu ubicación</li>
+                                <li><strong>Social accounts:</strong> Enlaces a tus redes sociales (Instagram,
+                                    SoundCloud, Spotify, etc.)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>Guarda los cambios</h4>
+                            <p>No olvides hacer clic en <strong>"Save"</strong> al final de la página.</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <p><strong>ℹ️ Importante:</strong> Tu perfil de GitHub será visible cuando compartas música en
+                            MusicHub. ¡Haz que se vea genial!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tutorial: Publicar Imágenes -->
+            <div class="tutorial-box">
+                <div class="tutorial-header" onclick="toggleTutorial('imageTutorial')">
+                    <div class="tutorial-title-wrap">
+                        <span class="tutorial-icon">🖼️</span>
+                        <h3 class="tutorial-title">¿Quieres publicar imágenes en los comentarios?</h3>
+                    </div>
+                    <span class="tutorial-toggle" id="imageTutorialToggle">▼</span>
+                </div>
+
+                <div class="tutorial-content" id="imageTutorial">
+                    <div class="tutorial-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Accede a GitHub Issues</h4>
+                            <p>Primero, necesitas un repositorio en GitHub (puedes crear uno o usar uno existente).</p>
+                            <p>En el <strong>menú hamburguesa</strong> (las tres líneas horizontales), selecciona la
+                                opción <strong>"Issues"</strong>.</p>
+                            <img src="1.png" alt="Paso 1: Acceder a GitHub Issues" class="screenshot"
+                                onclick="openModal(this.src)">
+                        </div>
+                    </div>
+
+                    <div class="tutorial-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Cargar tu Imagen</h4>
+                            <p>Dentro de "Issues", haz clic en <strong>"New issue"</strong> y arrastra tu imagen al
+                                cuadro de texto.</p>
+                            <p>GitHub subirá automáticamente la imagen y generará un código especial.</p>
+                            <img src="2.png" alt="Paso 2: Cargar imagen en el issue" class="screenshot"
+                                onclick="openModal(this.src)">
+                        </div>
+                    </div>
+
+                    <div class="tutorial-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Copiar el Código</h4>
+                            <p>Cuando arrastras la imagen, aparece un código como este:</p>
+                            <div class="code-example">
+                                &lt;img width="1344" height="768" alt="Image"
+                                src="https://github.com/user-attachments/assets/..." /&gt;
+                            </div>
+                            <p style="margin-top: var(--spacing-xs);">Copia ese código completo.</p>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Pegar en los Comentarios</h4>
+                            <p>Ve a la <strong>caja de comentarios de MusicHub</strong> y <strong>pega el
+                                    código</strong> que copiaste.</p>
+                            <p>¡Tu imagen aparecerá en el comentario!</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <p><strong>💡 Consejo:</strong> Puedes cancelar el issue después de copiar el código; la imagen
+                            seguirá disponible en GitHub.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Modal para ver imágenes en grande -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        // Función para toggle de tutoriales
+        function toggleTutorial(id) {
+            const content = document.getElementById(id);
+            const toggle = document.getElementById(id + 'Toggle');
+
+            content.classList.toggle('open');
+            toggle.classList.toggle('open');
+        }
+
+        // Función para abrir modal de imagen
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = src;
+        }
+
+        // Función para cerrar modal
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+    </script>
+
+</body>
+
+</html>
