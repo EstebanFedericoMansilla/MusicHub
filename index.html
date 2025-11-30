@@ -39,7 +39,7 @@
                 <nav class="nav">
                     <a href="#feed" class="nav-link">Feed</a>
                     <a href="#share" class="nav-link">Compartir</a>
-                    <a href="tutoriales.html" class="nav-link">📚 Ayuda</a>
+                    <a href="#" class="nav-link" onclick="openTutorialsModal(event)">📚 Ayuda</a>
                     <a href="https://github.com/signup" target="_blank" class="btn btn-primary"
                         style="margin-left: 0.5rem;">Crear cuenta</a>
                 </nav>
@@ -73,10 +73,10 @@
                 <!-- Feed Header -->
                 <div class="feed-header">
                     <h2 class="feed-title">🎶 Feed Musical</h2>
-
+                    <div id="last-comment-container"></div>
                     <div class="feed-controls">
                         <!-- Search -->
-                        <input type="text" id="search-input" class="search-input" placeholder="� Buscar música...">
+                        <input type="text" id="search-input" class="search-input" placeholder="Buscar música...">
 
                         <!-- Refresh Button -->
                         <button id="refresh-btn" class="btn btn-secondary">
@@ -130,7 +130,7 @@
                     </div>
 
                     <p class="instructions-footer-link">
-                        <a href="tutoriales.html" class="link-inline">
+                        <a href="#" class="link-inline" onclick="openTutorialsModal(event)">
                             📚 ¿Necesitas ayuda? Ver tutoriales →
                         </a>
                     </p>
@@ -149,6 +149,158 @@
         </div>
     </section>
 
+    
+    <!-- Tutorial Modal -->
+    <div id="tutorialModal" class="modal" onclick="closeTutorialsModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>📚 Tutoriales de MusicHub</h2>
+                <button class="close-modal-btn" onclick="closeTutorialsModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <!-- Tutorial: Crear cuenta GitHub -->
+                <div class="tutorial-box">
+                    <div class="tutorial-header" onclick="toggleTutorial('githubTutorial')">
+                        <div class="tutorial-title-wrap">
+                            <span class="tutorial-icon">🎓</span>
+                            <h3 class="tutorial-title">¿Primera vez en GitHub? Crea tu cuenta aquí</h3>
+                        </div>
+                        <span class="tutorial-toggle" id="githubTutorialToggle">▼</span>
+                    </div>
+
+                    <div class="tutorial-content" id="githubTutorial">
+                        <div class="tutorial-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Crear cuenta en GitHub</h4>
+                                <p>Ve a <a href="https://github.com/signup" target="_blank"
+                                        style="color: var(--color-primary);">github.com/signup</a> y completa el registro.
+                                    Es gratis y solo toma 2 minutos.</p>
+                            </div>
+                        </div>
+
+                        <div class="tutorial-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Personaliza tu perfil</h4>
+                                <p>Una vez en GitHub, haz clic en tu <strong>foto de perfil</strong> (esquina superior
+                                    derecha) y selecciona <strong>"Profile"</strong>. Luego haz clic en <strong>"Edit
+                                        profile"</strong>.</p>
+                            </div>
+                        </div>
+
+                        <div class="tutorial-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Sube tu foto</h4>
+                                <p>Haz clic en tu avatar y selecciona <strong>"Upload a photo..."</strong> para subir una
+                                    imagen desde tu dispositivo.</p>
+                            </div>
+                        </div>
+
+                        <div class="tutorial-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Completa tu información</h4>
+                                <p>Rellena los campos:</p>
+                                <ul>
+                                    <li><strong>Name:</strong> Tu nombre artístico</li>
+                                    <li><strong>Bio:</strong> Descripción sobre ti y tu música (máximo 160 caracteres)</li>
+                                    <li><strong>Location:</strong> Tu ubicación</li>
+                                    <li><strong>Social accounts:</strong> Enlaces a tus redes sociales (Instagram,
+                                        SoundCloud, Spotify, etc.)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="tutorial-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h4>Guarda los cambios</h4>
+                                <p>No olvides hacer clic en <strong>"Save"</strong> al final de la página.</p>
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <p><strong>ℹ️ Importante:</strong> Tu perfil de GitHub será visible cuando compartas música en
+                                MusicHub. ¡Haz que se vea genial!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tutorial: Publicar Imágenes -->
+                <div class="tutorial-box">
+                    <div class="tutorial-header" onclick="toggleTutorial('imageTutorial')">
+                        <div class="tutorial-title-wrap">
+                            <span class="tutorial-icon">🖼️</span>
+                            <h3 class="tutorial-title">¿Quieres publicar imágenes en los comentarios?</h3>
+                        </div>
+                        <span class="tutorial-toggle" id="imageTutorialToggle">▼</span>
+                    </div>
+
+                    <div class="tutorial-content" id="imageTutorial">
+                        <div class="tutorial-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Accede a GitHub Issues</h4>
+                                <p>Primero, necesitas un repositorio en GitHub (puedes crear uno o usar uno existente).</p>
+                                <p>En el <strong>menú hamburguesa</strong> (las tres líneas horizontales), selecciona la
+                                    opción <strong>"Issues"</strong>.</p>
+                                <img src="1.png" alt="Paso 1: Acceder a GitHub Issues" class="screenshot"
+                                    onclick="openImageModal(this.src)">
+                            </div>
+                        </div>
+
+                        <div class="tutorial-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Cargar tu Imagen</h4>
+                                <p>Dentro de "Issues", haz clic en <strong>"New issue"</strong> y arrastra tu imagen al
+                                    cuadro de texto.</p>
+                                <p>GitHub subirá automáticamente la imagen y generará un código especial.</p>
+                                <img src="2.png" alt="Paso 2: Cargar imagen en el issue" class="screenshot"
+                                    onclick="openImageModal(this.src)">
+                            </div>
+                        </div>
+
+                        <div class="tutorial-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Copiar el Código</h4>
+                                <p>Cuando arrastras la imagen, aparece un código como este:</p>
+                                <div class="code-example">
+                                    &lt;img width="1344" height="768" alt="Image"
+                                    src="https://github.com/user-attachments/assets/..." /&gt;
+                                </div>
+                                <p style="margin-top: var(--spacing-xs);">Copia ese código completo.</p>
+                            </div>
+                        </div>
+
+                        <div class="tutorial-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Pegar en los Comentarios</h4>
+                                <p>Ve a la <strong>caja de comentarios de MusicHub</strong> y <strong>pega el
+                                        código</strong> que copiaste.</p>
+                                <p>¡Tu imagen aparecerá en el comentario!</p>
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <p><strong>💡 Consejo:</strong> Puedes cancelar el issue después de copiar el código; la imagen
+                                seguirá disponible en GitHub.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal (for screenshots) -->
+    <div id="imageModal" class="modal" onclick="closeImageModal()">
+        <img class="modal-content" id="modalImage">
+    </div>
+
     <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
@@ -160,7 +312,7 @@
                 <a href="https://giscus.app" target="_blank">Giscus</a>
             </p>
             <p class="footer-text footer-small">
-                <a href="tutoriales.html" class="link-inline">📚 Tutoriales</a>
+                <a href="#" class="link-inline" onclick="openTutorialsModal(event)">📚 Tutoriales</a>
             </p>
 
             <!-- Contador de visitas -->
@@ -182,7 +334,6 @@
     <script src="audio-parser.js"></script>
     <script src="github-api.js"></script>
     <script src="app.js"></script>
-
 </body>
 
 </html>
