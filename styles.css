@@ -690,6 +690,10 @@ a:hover {
         display: flex;
     }
 
+    .nav .nav-link {
+        text-align: center;
+    }
+
     .hero-cta {
         flex-direction: column;
         width: 100%;
