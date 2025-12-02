@@ -125,35 +125,6 @@
         </div>
     </section>
 
-    <!-- Promote Section -->
-    <section id="promote" class="section" style="background-color: var(--color-surface-alt);">
-        <div class="container">
-            <h2 class="section-title text-center">¡Ayúdanos a difundir y gana dinero en efectivo!</h2>
-            <div class="promote-content" style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <p class="mb-4">Sigue estos pasos para ganar:</p>
-                <ol class="instructions-list" style="text-align: left; display: inline-block; margin-bottom: 2rem;">
-                    <li>Descarga una imagen de los comentarios (Guardar imagen como...).</li>
-                    <li>Compártela en tus redes (Grupos de Facebook, Instagram, TikTok) con este link: <a
-                            href="https://lnkd.in/dg73dK2R" target="_blank"
-                            style="color: var(--color-primary);">https://lnkd.in/dg73dK2R</a></li>
-                    <li>Envía captura de pantalla.</li>
-                </ol>
-
-                <div class="promote-buttons"
-                    style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="https://wa.me/5492664024390?text=Hola,%20ya%20compartí%20la%20imagen.%20Aquí%20está%20la%20captura."
-                        target="_blank" class="btn btn-primary"
-                        style="background-color: #25D366; border-color: #25D366;">
-                        📱 Enviar por WhatsApp
-                    </a>
-                    <a href="#" onclick="openPromoteModal(); return false;" class="btn btn-secondary">
-                        📧 Enviar por Email
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Share Music Section -->
     <section id="share" class="section">
         <div class="container">
@@ -357,57 +328,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Promote Modal (Email Info) -->
-    <div id="promoteModal" class="modal" onclick="closePromoteModal()">
-        <div class="modal-content" onclick="event.stopPropagation()" style="text-align: center;">
-            <div class="modal-header">
-                <h2>📧 Enviar Captura</h2>
-                <button class="close-modal-btn" onclick="closePromoteModal()">×</button>
-            </div>
-            <div class="modal-body">
-                <p class="mb-4">Para participar, envía la captura de pantalla a nuestro correo:</p>
-
-                <div class="email-display"
-                    style="background: var(--color-surface-alt); padding: 1rem; border-radius: var(--border-radius); margin-bottom: 1.5rem; border: 1px solid var(--color-border);">
-                    <code id="emailToCopy"
-                        style="font-size: 1.2rem; font-weight: bold; color: var(--color-primary);">masteringsteve@gmail.com</code>
-                </div>
-
-                <div class="modal-actions" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <button onclick="copyEmail()" class="btn btn-secondary">
-                        📋 Copiar Email
-                    </button>
-                </div>
-                <p id="copySuccess" style="color: #25D366; margin-top: 1rem; display: none; font-size: 0.9rem;">¡Email
-                    copiado al portapapeles!</p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function openPromoteModal() {
-            document.getElementById('promoteModal').style.display = 'flex';
-        }
-
-        function closePromoteModal() {
-            document.getElementById('promoteModal').style.display = 'none';
-            document.getElementById('copySuccess').style.display = 'none';
-        }
-
-        function copyEmail() {
-            const emailText = document.getElementById('emailToCopy').innerText;
-            navigator.clipboard.writeText(emailText).then(() => {
-                const successMsg = document.getElementById('copySuccess');
-                successMsg.style.display = 'block';
-                setTimeout(() => {
-                    successMsg.style.display = 'none';
-                }, 3000);
-            }).catch(err => {
-                console.error('Error al copiar:', err);
-            });
-        }
-    </script>
 
     <!-- Image Modal (for screenshots) -->
     <div id="imageModal" class="modal" onclick="closeImageModal()">
